@@ -1,0 +1,39 @@
+import java.nio.file.Files
+
+plugins {
+    id 'java'
+    id 'application'
+    id 'idea'
+}
+
+group 'tech.toparvion.sample'
+version '1.0'
+
+sourceCompatibility = JavaVersion.VERSION_11
+mainClassName = 'tech.toparvion.sample.jshell.SpringBootJShellAdapter'
+
+tasks.register("regenerate") {
+    group = 'jshellw'
+    description = '(re)Generates JShell wrapper script from SpringBootJShellAdapter class'
+
+    doLast {
+        def srcFile = file('src/main/java/tech/toparvion/sample/jshell/SpringBootJShellAdapter.java')
+        def dstFile = file('jshellw')
+        def dstWriter = Files.newBufferedWriter(dstFile.toPath())
+        def javaHome = project.hasProperty("javaHome")
+                ? javaHome
+                : '/usr'
+        dstWriter.write("#!$javaHome/bin/java --source 11")
+        dstWriter.newLine()
+        dstWriter.newLine()
+        def srcReader = Files.newBufferedReader(srcFile.toPath())
+        srcReader.transferTo(dstWriter)
+        dstWriter.close()
+        srcReader.close()
+        println "JShell wrapper script has been (re)generated with JavaHome=$javaHome/. How to use wrapper:\n" +
+                "1. Copy it to the destination (e.g. with 'docker cp' command)\n" +
+                "2. Make it executable: 'chmod +x jshellw'\n" +
+                "3. Run it with path to Spring Boot application JAR, e.g. './jshell /opt/app/spring-boot-app.jar'"
+    }
+}
+
