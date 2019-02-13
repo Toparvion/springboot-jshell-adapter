@@ -20,7 +20,7 @@ $ sudo docker exec -w /microservice mycontainer chmod +x jshellw
 
 3. Run the script pointing to Spring Boot archive 
 ```bash
-sudo docker exec -it -w /microservice mycontainer ./jshellw app.jar
+$ sudo docker exec -it -w /microservice mycontainer ./jshellw app.jar
 ```
 
 The output should look like:

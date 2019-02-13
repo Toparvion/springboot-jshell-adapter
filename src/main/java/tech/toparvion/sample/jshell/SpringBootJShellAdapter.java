@@ -33,12 +33,12 @@ public class SpringBootJShellAdapter {
 
   public static void main(String[] args) throws IOException, InterruptedException {
     if (args.length < 1) {
-      System.out.println("Usage: $ jshellw <path/to/spring-boot-app.jar");
+      System.out.println("Usage: $ jshellw <path/to/spring-boot-app.jar>");
       System.exit(1);
     }
     Path bootInfPath = extractClasspathFiles(args[0]);
-    String jshellClassPathValue = composeClassPathString(bootInfPath);
-    launchJShell(jshellClassPathValue);
+    String jshellClasspathString = composeClasspathString(bootInfPath);
+    launchJShell(jshellClasspathString);
   }
 
   private static Path extractClasspathFiles(String fatJarPath) throws IOException {
@@ -77,7 +77,7 @@ public class SpringBootJShellAdapter {
     return bootInfPath;
   }
 
-  private static String composeClassPathString(Path extractRoot) throws IOException {
+  private static String composeClasspathString(Path extractRoot) throws IOException {
     var classesPath = extractRoot.resolve("classes/").toAbsolutePath().toString();
     var libDirPath = extractRoot.resolve("lib/");
     var pathSeparator = System.getProperty("path.separator");
