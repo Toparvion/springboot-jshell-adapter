@@ -25,9 +25,9 @@ $ sudo docker exec -it -w /microservice mycontainer ./jshellw app.jar
 
 The output should look like:
 ```text
-Created temp directory '/tmp/springboot-jshell-adapter-9198835338346642503'. Extracting classpath content...
-Extracted 191 files from the archive dir to '/tmp/springboot-jshell-adapter-9198835338346642503/BOOT-INF'.
-Starting JShell with '/usr/lib/jvm/java-11-openjdk-amd64/bin/jshell --feedback verbose --class-path /tmp/springboot-jshell-adapter-9198835338346642503/BOOT-INF/classes:/tmp/springboot-jshell-adapter-9198835338346642503/BOOT-INF/lib/*'...
+Created temp directory '/tmp/...'. Extracting classpath content...
+Extracted 191 files from the archive to '/tmp/.../BOOT-INF'.
+Starting JShell with '/usr/lib/jvm/java-11-openjdk-amd64/bin/jshell --feedback verbose --class-path /tmp/.../BOOT-INF/classes:/tmp/.../BOOT-INF/lib/*'...
 |  Welcome to JShell -- Version 11.0.1
 |  For an introduction type: /help intro
 
@@ -40,14 +40,14 @@ steps 2 and 3:
 java --source 11 jshellw app.jar
 ```
 
-
 ### Check
 To check if classpath has been composed and applied correctly, type `/env` and you should see something like:
 ```text
 jshell> /env
-|     --class-path /tmp/springboot-jshell-adapter-5697341775544310278/BOOT-INF/classes:/tmp/springboot-jshell-adapter-5697341775544310278/BOOT-INF/lib/HdrHistogram-2.1.9.jar:...<other-jars>...
+|     --class-path /tmp/.../BOOT-INF/classes:/tmp/.../BOOT-INF/lib/HdrHistogram-2.1.9.jar:...<other-jars>...
 ```
-### Work
+
+### Play
 Now you can import any classes from your classpath and work with them in JShell like in your dev environment.  
 For example:
 ```
@@ -56,3 +56,5 @@ jshell> var cleanedPath = StringUtils.cleanPath(".\\..\\core/inst/meg.dump")
 cleanedPath ==> "../core/inst/meg.dump"
 |  created variable cleanedPath : String
 ```
+#### Need hepl on using JShell?
+See this [Comprehensive Guide](https://www.infoq.com/articles/jshell-java-repl) or google for `jara repl`.
