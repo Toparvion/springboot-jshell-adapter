@@ -18,22 +18,29 @@ $ sudo docker cp jshellw mycontainer:/microservice/jshellw
 $ sudo docker exec -w /microservice mycontainer chmod +x jshellw
 ```
 
-3. Run the script pointing to Spring Boot archive 
+3. Run the script pointing to Spring Boot JAR or WAR archive 
 ```bash
 $ sudo docker exec -it -w /microservice mycontainer ./jshellw app.jar
 ```
 
 The output should look like:
 ```text
-Created temp directory '/tmp/springboot-jshell-adapter-5697341775544310278'. Extracting BOOT-INF content...
-Extracted BOOT-INF content to '/tmp/springboot-jshell-adapter-5697341775544310278/BOOT-INF'.
-JShell --class-path option composed: 6937 bytes, 74 entries, ':'-separated
-Starting JShell with '/usr/lib/jvm/java-11-openjdk-amd64/bin/jshell'...
+Created temp directory '/tmp/springboot-jshell-adapter-9198835338346642503'. Extracting classpath content...
+Extracted 191 files from the archive dir to '/tmp/springboot-jshell-adapter-9198835338346642503/BOOT-INF'.
+Starting JShell with '/usr/lib/jvm/java-11-openjdk-amd64/bin/jshell --feedback verbose --class-path /tmp/springboot-jshell-adapter-9198835338346642503/BOOT-INF/classes:/tmp/springboot-jshell-adapter-9198835338346642503/BOOT-INF/lib/*'...
 |  Welcome to JShell -- Version 11.0.1
 |  For an introduction type: /help intro
 
 jshell>
 ```
+##### In case of Windows
+To run the script in Windows just execute the following instead of
+steps 2 and 3:
+```
+java --source 11 jshellw app.jar
+```
+
+
 ### Check
 To check if classpath has been composed and applied correctly, type `/env` and you should see something like:
 ```text
