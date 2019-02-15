@@ -56,5 +56,5 @@ jshell> var cleanedPath = StringUtils.cleanPath(".\\..\\core/inst/meg.dump")
 cleanedPath ==> "../core/inst/meg.dump"
 |  created variable cleanedPath : String
 ```
-#### Need hepl on using JShell?
+#### Need help on using JShell?
 See this [Comprehensive Guide](https://www.infoq.com/articles/jshell-java-repl) or google for `jara repl`.
