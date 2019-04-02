@@ -48,7 +48,7 @@ jshell> /env
 ```
 
 ### Play
-Now you can import any classes from your classpath and work with them in JShell just like in your dev environment.  
+Now you can import any classes from your classpath and work with them in JShell just like you do in your dev environment.  
 For example:
 ```
 jshell> import org.springframework.util.StringUtils
@@ -58,10 +58,10 @@ cleanedPath ==> "../core/inst/meg.dump"
 ```
 You can even launch the application at whole by invoking it's main class, e.g.
 ```
-jshell> import com.mucompany.spring.boot.application.MainClass
+jshell> import com.example.spring.boot.application.MainClass
 jshell> MainClass.main(new String[0])
 ```
-but before make sure that current value of `user.dir` system property points to application's home directory (if it matters).
+but before it make sure that current value of `user.dir` system property points to application's home directory (if it matters).
 
 #### Need help on using JShell?
 See this [Comprehensive Guide](https://www.infoq.com/articles/jshell-java-repl) or google for `java repl`.
